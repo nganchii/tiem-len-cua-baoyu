@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tài khoản của tôi | Tiệm len của Baoyuu</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f6f6f8; color: #222; }
+    .top { background: #f7c8d3; padding: 16px 24px; display: flex; justify-content: space-between; }
+    .top a { color: #222; text-decoration: none; font-weight: 700; }
+    .wrap { max-width: 1000px; margin: 28px auto; padding: 0 20px; display: grid; grid-template-columns: 260px 1fr; gap: 24px; align-items: start; }
+    .box { background: #fff; border-radius: 16px; padding: 24px; }
+
+    .side { text-align: center; }
+    .avatar { width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 12px; background: #f7c8d3; color: #A8B58A; display: grid; place-items: center; font-size: 2.6rem; font-weight: 700; overflow: hidden; }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .side h3 { margin: 0 0 2px; }
+    .side small { color: #666; word-break: break-all; }
+    .upload { display: inline-block; margin: 12px 0 18px; font-size: .88rem; color: #2f5bea; cursor: pointer; }
+    .upload input { display: none; }
+    .tabs { display: grid; gap: 8px; }
+    .tab, .logout { width: 100%; padding: 12px; border: 0; border-radius: 10px; background: #f3f3f5; font: inherit; font-weight: 700; cursor: pointer; }
+    .tab.active { background: #A8B58A; color: #fff; }
+    .logout { margin-top: 12px; background: #fff; border: 1.5px solid #c73a3a; color: #c73a3a; }
+
+    h1 { margin: 0 0 18px; font-size: 1.4rem; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; }
+    .field.full { grid-column: 1 / -1; }
+    label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 6px; }
+    input[type=text], input[type=tel], input[type=email], input[type=date], select, textarea {
+      width: 100%; padding: 12px 14px; font: inherit; border: 1.5px solid #ccc; border-radius: 10px; background: #fff;
+    }
+    input[readonly] { background: #f3f3f5; color: #666; }
+    input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #A8B58A; outline-offset: 2px; }
+    .invalid { border-color: #c73a3a !important; }
+    .error { color: #c73a3a; font-size: .82rem; margin-top: 4px; min-height: 1em; }
+    .save { margin-top: 18px; padding: 14px 28px; border: 0; border-radius: 10px; background: #A8B58A; color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+    .save:hover { filter: brightness(.95); }
+    #msg { margin-left: 14px; color: #1b8a57; font-weight: 700; }
+
+    .order { border: 1.5px solid #eee; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+    .order-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+    .order li { margin: 4px 0; }
+    .order ul { margin: 6px 0; padding-left: 18px; }
+    .badge { background: #f7c8d3; border-radius: 999px; padding: 2px 10px; font-size: .8rem; font-weight: 700; }
+    .empty { color: #666; text-align: center; padding: 30px 0; }
+    @media (max-width: 760px) { .wrap { grid-template-columns: 1fr; } .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <a href="index.html">← Về cửa hàng</a>
+    <a href="index.html#shop">Tiệm len của Baoyuu</a>
+  </div>
+
+  <div class="wrap">
+    <aside class="box side">
+      <div class="avatar" id="avatar"></div>
+      <h3 id="sideName"></h3>
+      <small id="sideEmail"></small><br>
+      <label class="upload">Đổi ảnh đại diện<input type="file" id="avatarFile" accept="image/*"></label>
+      <div class="tabs">
+        <button type="button" class="tab active" data-tab="info">Thông tin cá nhân</button>
+        <button type="button" class="tab" data-tab="orders">Đơn hàng của tôi</button>
+      </div>
+      <button type="button" class="logout" id="logoutBtn">Đăng xuất</button>
+    </aside>
+
+    <main class="box">
+      <section id="tab-info">
+        <h1>Thông tin cá nhân</h1>
+        <form id="profileForm" novalidate>
+          <div class="grid">
+            <div class="field"><label for="name">Họ và tên</label><input id="name" type="text" autocomplete="name"><div class="error" id="err-name"></div></div>
+            <div class="field"><label for="email">Email</label><input id="email" type="email" readonly></div>
+            <div class="field"><label for="phone">Số điện thoại</label><input id="phone" type="tel" autocomplete="tel" placeholder="0912345678"><div class="error" id="err-phone"></div></div>
+            <div class="field"><label for="birthday">Ngày sinh</label><input id="birthday" type="date"></div>
+            <div class="field"><label for="gender">Giới tính</label>
+              <select id="gender"><option value="">Chưa chọn</option><option value="nu">Nữ</option><option value="nam">Nam</option><option value="khac">Khác</option></select>
+            </div>
+            <div class="field full"><label for="address">Địa chỉ nhận hàng</label><textarea id="address" rows="3" placeholder="Số nhà, đường, phường/xã, tỉnh/thành phố"></textarea></div>
+          </div>
+          <button type="submit" class="save">Lưu thông tin</button><span id="msg"></span>
+        </form>
+      </section>
+
+      <section id="tab-orders" hidden>
+        <h1>Đơn hàng của tôi</h1>
+        <div id="orderList"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // ===== Kiểm tra đăng nhập =====
+    const store = localStorage.getItem('token') ? localStorage
+                : sessionStorage.getItem('token') ? sessionStorage : null;
+    const email = store ? store.getItem('userEmail') : null;
+    if (!store || !email) {
+      location.replace('dang-nhap.html');
+    } else {
+      init();
+    }
+
+    function init() {
+      const $ = (id) => document.getElementById(id);
+      const money = (n) => n.toLocaleString('vi-VN') + 'đ';
+      const read = (key, fallback) => {
+        try { return JSON.parse(localStorage.getItem(key) || fallback); }
+        catch (e) { return JSON.parse(fallback); }
+      };
+
+      const users = read('users', '[]');
+      const account = users.find((u) => u.email === email) || {};
+      const profiles = read('profiles', '{}');
+      // lần đầu: lấy sẵn tên và SĐT từ lúc đăng ký
+      let profile = profiles[email] || { name: account.name || '', phone: account.phone || '' };
+
+      // ===== Hiển thị =====
+      function showAvatar() {
+        const box = $('avatar');
+        box.innerHTML = '';
+        if (profile.avatar) {
+          const img = document.createElement('img');
+          img.src = profile.avatar; img.alt = 'Ảnh đại diện';
+          box.appendChild(img);
+        } else {
+          box.textContent = (profile.name || email).trim().charAt(0).toUpperCase();
+        }
+        $('sideName').textContent = profile.name || 'Khách hàng';
+        $('sideEmail').textContent = email;
+      }
+
+      $('name').value = profile.name || '';
+      $('email').value = email;
+      $('phone').value = profile.phone || '';
+      $('birthday').value = profile.birthday || '';
+      $('gender').value = profile.gender || '';
+      $('address').value = profile.address || '';
+      showAvatar();
+
+      // ===== Lưu thông tin =====
+      $('profileForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = $('name').value.trim();
+        const phone = $('phone').value.trim();
+        let ok = true;
+
+        const check = (id, cond, msg) => {
+          $('err-' + id).textContent = cond ? '' : msg;
+          $(id).classList.toggle('invalid', !cond);
+          if (!cond) ok = false;
+        };
+        check('name', name.length >= 2, 'Nhập họ và tên.');
+        check('phone', phone === '' || /^(0|\+84)\d{9}$/.test(phone), 'Số điện thoại chưa hợp lệ.');
+        if (!ok) return;
+
+        profile = {
+          ...profile,
+          name, phone,
+          birthday: $('birthday').value,
+          gender: $('gender').value,
+          address: $('address').value.trim()
+        };
+        profiles[email] = profile;
+        try {
+          localStorage.setItem('profiles', JSON.stringify(profiles));
+          store.setItem('userName', name);   // để lời chào "Xin chào, ..." cập nhật theo
+        } catch (err) {}
+
+        showAvatar();
+        $('msg').textContent = 'Đã lưu thông tin';
+        setTimeout(() => ($('msg').textContent = ''), 2500);
+      });
+
+      // ===== Đổi ảnh đại diện (thu nhỏ trước khi lưu) =====
+      $('avatarFile').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          const img = new Image();
+          img.onload = () => {
+            const size = 200;
+            const canvas = document.createElement('canvas');
+            canvas.width = canvas.height = size;
+            const side = Math.min(img.width, img.height);
+            const sx = (img.width - side) / 2, sy = (img.height - side) / 2;
+            canvas.getContext('2d').drawImage(img, sx, sy, side, side, 0, 0, size, size);
+            profile.avatar = canvas.toDataURL('image/jpeg', 0.8);
+            profiles[email] = profile;
+            try { localStorage.setItem('profiles', JSON.stringify(profiles)); } catch (err) {}
+            showAvatar();
+          };
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
+
+      // ===== Chuyển tab =====
+      document.querySelectorAll('.tab').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tab').forEach((b) => b.classList.toggle('active', b === btn));
+          $('tab-info').hidden = btn.dataset.tab !== 'info';
+          $('tab-orders').hidden = btn.dataset.tab !== 'orders';
+        });
+      });
+
+      // ===== Lịch sử đơn hàng =====
+      const el = (tag, cls, text) => {
+        const e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (text !== undefined) e.textContent = text;
+        return e;
+      };
+
+      const mine = read('orders', '[]')
+        .filter((o) => o.email === email || (profile.phone && o.customer && o.customer.phone === profile.phone))
+        .reverse();
+
+      const list = $('orderList');
+      if (mine.length === 0) {
+        list.appendChild(el('p', 'empty', 'Bạn chưa có đơn hàng nào.'));
+      } else {
+        mine.forEach((o) => {
+          const card = el('div', 'order');
+          const head = el('div', 'order-head');
+          head.append(
+            el('b', '', 'Mã đơn: ' + o.code),
+            el('span', '', new Date(o.createdAt).toLocaleString('vi-VN')),
+            el('span', 'badge', o.payment === 'bank' ? 'Chuyển khoản' : 'Thanh toán khi nhận hàng')
+          );
+          const ul = el('ul');
+          o.items.forEach((it) => ul.appendChild(el('li', '', it.name + ' × ' + it.quantity + ' — ' + money(it.price * it.quantity))));
+          card.append(head, ul, el('b', '', 'Tổng: ' + money(o.total)));
+          if (o.note) card.appendChild(el('p', '', 'Ghi chú: ' + o.note));
+          list.appendChild(card);
+        });
+      }
+
+      // ===== Đăng xuất =====
+      $('logoutBtn').addEventListener('click', () => {
+        ['token', 'userName', 'userEmail'].forEach((k) => {
+          localStorage.removeItem(k);
+          sessionStorage.removeItem(k);
+        });
+        location.href = 'dang-nhap.html';
+      });
+    }
+  </script>
+</body>
+</html>

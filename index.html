@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="vi">
+   <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link 
+     rel="stylesheet" 
+     href="style.css">
+     <script src="script.js" defer></script>
+     <title>Tiệm len của Baoyuu</title>
+   </head>
+   <body>
+      <header>
+         <div class="search-box">
+            <input type="text" id="search-input" placeholder="Search" autocomplete="off">
+            <button type="button" id="search-btn"> 🔍 </button>
+            <button type="button" id="cart-open"> 🛒 </button>
+         </div>
+      </header>
+
+      <main>
+         <div class="container">
+            <aside class="left">
+               <div class="logo">
+                  <img 
+                  src="logo 1.jpg"
+                  alt="logo">
+                  <strong>MY SHOP</strong>
+               </div>
+
+               <nav class="menu">
+                  <a href="#home">Trang chủ</a>
+                  <a href="#shop">Gian hàng</a>
+                  <a href="dang-nhap.html">Tài khoản</a>
+               </nav>
+               
+            </aside>
+         </div>
+
+         <div class="main-content">
+            <section class="about-us" id="home">
+               <img src="aboutus.png">
+            </section>
+
+   <!-- Gian hàng chính -->
+            <section class="main-shop" id="shop">
+               <h1> Sản phẩm chính </h1>
+            </section>
+
+      <!-- SẢN PHẨM HOA -->
+            <section class="slider-wrap">
+               <div class="title">
+                  <h2> Sản phẩm Hoa</h2>
+               </div>
+
+               <button class="slider-btn prev" type="button" aria-label="Xem sản phẩm trước">‹</button>
+               <div class="slider-track">
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Hoa\Blue-rose (1).jpg" alt="Hoa hồng xanh">
+                     <h3> Thanh Xuân Vĩnh Cửu </h3>
+                     <p class="price"> 145.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Hoa\Blue-rose (1).jpg" data-id="Blue-rose" data-name="Thanh Xuân Vĩnh Cửu" data-price="145000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Hoa\red-rose.jpg" alt="Hoa hồng đỏ">
+                     <h3> Hồng Đơn Rực Rỡ </h3>
+                     <p class="price"> 155.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Hoa\red-rose.jpg" data-id="red-rose" data-name="Hồng Đơn Rực Rỡ " data-price="155000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Hoa\rose(1).jpg" alt="Hoa hồng">
+                     <h3> Giấc Mơ Kẹo Ngọt </h3>
+                     <p class="price"> 355.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Hoa\rose(1).jpg" data-id="rose" data-name="Giấc Mơ Kẹo Ngọt" data-price="355000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Hoa\Sunflower-bé (1).jpg" alt="Hướng dương bé">
+                     <h3> Vạt Nắng Ban Mai </h3>
+                     <p class="price"> 125.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Hoa\Sunflower-bé (1).jpg" data-id="sunflower" data-name="Vạt Nắng Ban Mai" data-price="125000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Hoa\Sunflower-to (4).jpg" alt="Hướng dương bé">
+                     <h3> Rạng Rỡ Tương Lai </h3>
+                     <p class="price"> 369.000 đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Hoa\Sunflower-to (4).jpg" data-id="sunflower-to" data-name="Rạng Rỡ Tương Lai" data-price="369000">
+                        🛒 
+                     </button>
+                  </div>
+               </div>
+
+               <button class="slider-btn next" type="button" aria-label="Xem sản phẩm sau">›</button>
+            </section>
+
+      <!-- SẢN PHẨM THÚ -->
+            <section class="slider-wrap">
+               <div class="title">
+                     <h2> Sản phẩm Thú</h2>
+               </div>
+               <button class="slider-btn prev" type="button" aria-label="Xem sản phẩm trước">‹</button>
+               <div class="slider-track">
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Thú\bun (1).jpg" alt="Thỏ">
+                     <h3> Thỏ Điệu </h3>
+                     <p class="price"> 45.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Thú\bun (1).jpg" data-id="tho-01" data-name="Thỏ Điệu" data-price="45000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Thú\capy (1).jpg" alt="Capybara">
+                     <h3> Hạt Dẻ Đội Cam </h3>
+                     <p class="price"> 150.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Thú\capy (1).jpg" data-id="capy-01" data-name="Hạt Dẻ Đội Cam" data-price="150000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Thú\corn (1).jpg" alt="Ngô">
+                     <h3> Bé Bắp Nuông Chiều </h3>
+                     <p class="price"> 80.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Thú\corn (1).jpg" data-id="corn-01" data-name="Bé Bắp Nuông Chiều" data-price="80000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Thú\cup (1).jpg" alt="Cup">
+                     <h3> Cúp "Best Boyfriend"</h3>
+                     <p class="price"> 65.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Thú\cup (1).jpg" data-id="cup-01" data-name="Cúp Best Boyfriend" data-price="65000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Thú\heo(5).jpg" alt="Heo">
+                     <h3> Heo con dễ thương </h3>
+                     <p class="price"> 35.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Thú\heo(5).jpg" data-id="heo" data-name="Heo con dễ thương" data-price="35000">
+                        🛒 
+                     </button>
+                  </div>
+               </div>
+
+               <button class="slider-btn next" type="button" aria-label="Xem sản phẩm sau">›</button>
+            </section>
+
+      <!-- SẢN PHẨM KHÁC -->
+            <section class="slider-wrap">
+               <div class="title">
+                     <h2> Sản phẩm Khác</h2>
+               </div>
+
+               <button class="slider-btn prev" type="button" aria-label="Xem sản phẩm trước">‹</button>
+               <div class="slider-track">
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Khác\Bó hồng mini.jpg" alt="minirose">
+                     <h3> Vườn Hồng Mini </h3>
+                     <p class="price"> 35.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Khác\Bó hồng mini.jpg" data-id="minirose" data-name="Vườn Hồng Mini" data-price="35000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Khác\charm hoa.jpg" alt="charm-hoa">
+                     <h3> Gió Sớm Đầu Mùa </h3>
+                     <p class="price"> 25.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Khác\charm hoa.jpg" data-id="charm-hoa" data-name="Gió Sớm Đầu Mùa" data-price="25000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Khác\Kẹp (1).jpg" alt="Kẹp">
+                     <h3> Kẹp tóc Kuroba Kaito </h3>
+                     <p class="price"> 25.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Khác\Kẹp (1).jpg" data-id="kep" data-name="Kẹp tóc Kuroba Kaito" data-price="25000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Khác\kẹp full body (1).jpg" alt="Kẹp doll">
+                     <h3> Chibi Nhỏ Tinh Nghịch </h3>
+                     <p class="price"> 27.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Khác\kẹp full body (1).jpg" data-id="kep-doll" data-name="Chibi Nhỏ Tinh Nghịch" data-price="27000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Khác\khăn cờ đỏ (1).jpg" alt="Khăn">
+                     <h3> Tự Hào Việt Nam </h3>
+                     <p class="price"> 120.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Khác\khăn cờ đỏ (1).jpg" data-id="khan" data-name="Tự Hào Việt Nam" data-price="120000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Khác\Túi may mắn (1).jpg" alt="túi">
+                     <h3> Túi Tấm Cám "Kẹo Bông Điệu Đà" </h3>
+                     <p class="price"> 45.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Khác\Túi may mắn (1).jpg" data-id="tui" data-name="Túi Tấm Cám Kẹo Bông Điệu Đà" data-price="45000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Khác\túi đeo tay.jpg" alt="túi đeo">
+                     <h3> Mây Trắng Quai Hồng </h3>
+                     <p class="price"> 200.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Khác\túi đeo tay.jpg" data-id="tui-deo" data-name="Mây Trắng Quai Hồng" data-price="20000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Khác\Túi-sao (1).jpg" alt="Túi sao">
+                     <h3> Ngôi Sao May Mắn </h3>
+                     <p class="price"> 180.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Khác\Túi-sao (1).jpg" data-id="tui-sao" data-name="Ngôi Sao May Mắn" data-price="180000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Khác\Volleyball (1).jpg" alt="volleyball">
+                     <h3> Bóng Chuyền Năng Động </h3>
+                     <p class="price"> 220.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Khác\Volleyball (1).jpg" data-id="volleyball" data-name="Bóng Chuyền Năng Động" data-price="220000">
+                        🛒 
+                     </button>
+                  </div>
+
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Khác\Scrunches (1).jpg" alt="Scrunches">
+                     <h3> Mây Xanh Điệu Đà </h3>
+                     <p class="price"> 55.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Khác\Scrunches (1).jpg" data-id="Scrunches" data-name="Mây Xanh Điệu Đà " data-price="55000">
+                        🛒 
+                     </button>
+                  </div>
+
+               </div>
+
+               <button class="slider-btn next" type="button" aria-label="Xem sản phẩm sau">›</button>
+            </section>
+
+      <!-- YÊU CẦU RIÊNG -->
+            <section class="slider-wrap">
+               <div class="title">
+                     <h2> Yêu cầu khác </h2>
+               </div>
+
+               <button class="slider-btn prev" type="button" aria-label="Xem sản phẩm trước">‹</button>
+               <div class="slider-track">
+                  <div class="sp">
+                     <img src="Sản phẩm\SP Khác\móc khóa xinh.jpg" alt="Custom">
+                     <h3> Yêu cầu thêm </h3>
+                     <p class="price"> 50.000đ </p>
+                     <button id="add-to-cart" class="cart-1st" data-img="Sản phẩm\SP Khác\móc khóa xinh.jpg" data-id="custom" data-name="Yêu cầu thêm" data-price="50000">
+                        🛒 
+                     </button>
+                  </div>
+               </div>
+               <button class="slider-btn next" type="button" aria-label="Xem sản phẩm sau">›</button>
+            </section>
+         </div>
+
+   <!-- Pop-up theo dõi đơn -->
+         <div id="order-cart" class="cart-overlay">
+            <div class="cart-content">
+               <button type="button" class="close-cart"> ✕ </button>
+               <h2> GIỎ HÀNG CỦA BẠN </h2>
+
+               <div id="cart-items">
+                  <p class="empty-cart"> Chưa có sản phẩm nào trong giỏ hàng của bạn </p>
+               </div>
+
+               <div class="cart-summary">
+                  <strong> Tổng tiền: <span id="cart-total">0đ</span></strong>
+               </div>
+
+               <label for="cart-note" class="note-label"> Ghi chú cho tiệm</label>
+               <textarea id="cart-note" rows="3" maxlength="300"
+                  placeholder="Ví dụ: đổi màu hoa sang hồng, gói quà, giao giờ hành chính..."></textarea>
+
+               <button type="button" id="checkout-btn" class="checkout-btn">Thanh toán</button>
+
+            </div>
+         </div>
+
+      </main>
+
+      
+      <footer id="footer">
+
+         <div class="footer-column">
+            <h1> SUPPORT </h1>
+            <div class="support-item">
+               <h2> Address: </h2>
+                  <p> Số 138, Nguyễn Thị Định, tổ 9, phường Tân Phong, tỉnh Lai Châu </p>
+
+               <h2> Phone Number: </h2>
+                  <p> 0977902855 </p>
+
+               <h2> Email: </h2>
+                  <p> tiemlenbaoyu@gmail.com </p>
+            </div>
+         </div>
+         
+         <div class="footer-column">
+            <div class="follow">
+               <h1> CHÍNH SÁCH </h1>
+
+               <a href="dieu-khoan.html"> Điều khoản sử dụng </a>
+               <a href="chinh-sach-bao-mat.html"> Chính sách bảo mật </a>
+            </div>
+         </div>
+
+         <div class="footer-column">
+            <div class="follow">
+               <h1> FOLLOW US </h1>
+
+               <a href="https://www.facebook.com/share/1FycUF4z9r/?mibextid=wwXIfr "> Facebook </a>
+               <a href="https://www.instagram.com/dbngoc_181"> Instagram </a>
+               <a href="https://www.tiktok.com/@baoyu181"> Tiktok </a>
+
+            </div>
+         </div>
+
+      </footer>
+
+      
+   </body> 
+</html>
