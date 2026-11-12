@@ -85,7 +85,7 @@ input[type="password"] {
   border-radius: 10px;
 }
 
-input:focus-visible { outline: 3px solid #2f5bea; outline-offset: 2px; }
+input:focus-visible { outline: 3px solid #A8B58A; outline-offset: 2px; }
 input.invalid { border-color: #c73a3a; }
 
 .error { display: block; color: #c73a3a; font-size: .82rem; margin-top: 5px; }
@@ -100,12 +100,12 @@ button {
   font: inherit;
   font-weight: 700;
   color: #fff;
-  background: #2f5bea;
+  background: #A8B58A;
   border: 0;
   border-radius: 10px;
   cursor: pointer;
 }
-button:hover { background: #2449c4; }
+button:hover { background: #A8B58A; }
 button:disabled { opacity: .6; cursor: wait; }
 
 #result { text-align: center; font-size: .92rem; margin-top: 14px; }
