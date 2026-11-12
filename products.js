@@ -164,7 +164,7 @@ const PRODUCTS = {
     price: 50000,
     img: "Sản phẩm/SP Khác/móc khóa xinh.jpg",
     category: "Yêu cầu khác",
-    desc: "Bạn muốn một món len theo ý riêng? Nhắn cho tiệm để trao đổi mẫu và giá cụ thể.",
+    desc: "Bạn muốn một món len theo ý riêng? Nhắn cho tiệm để trao đổi mẫu và giá cụ thể qua số điện thoại/ email/ zalo. Thông tin ở mục liên hệ.",
     material: "Len milk cotton"
   }
 };
