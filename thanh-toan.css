@@ -1,0 +1,36 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #f6f6f8; color: #222; }
+.top { background: #f7c8d3; padding: 16px 24px; }
+.top a { color: #222; text-decoration: none; font-weight: 700; }
+.wrap { max-width: 1000px; margin: 28px auto; padding: 0 20px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; }
+.box { background: #fff; border-radius: 16px; padding: 24px; }
+h1 { margin: 0 0 16px; font-size: 1.5rem; }
+h2 { margin: 0 0 14px; font-size: 1.15rem; }
+.field { margin-bottom: 14px; }
+label { display: block; font-weight: 700; margin-bottom: 6px; font-size: .92rem; }
+input[type=text], input[type=tel], textarea {
+    width: 100%; padding: 12px 14px; font: inherit;
+    border: 1.5px solid #ccc; border-radius: 10px;
+}
+input:focus-visible, textarea:focus-visible { outline: 3px solid #A8B58A; outline-offset: 2px; }
+.invalid { border-color: #c73a3a !important; }
+.error { color: #c73a3a; font-size: .82rem; margin-top: 4px; min-height: 1em; }
+.pay { display: flex; gap: 10px; align-items: flex-start; padding: 12px; border: 1.5px solid #ddd; border-radius: 10px; margin-bottom: 10px; cursor: pointer; font-weight: 400; }
+.pay input { margin-top: 3px; }
+.pay small { display: block; color: #666; margin-top: 2px; }
+#bankInfo { display: none; background: #f7f7f2; border-radius: 10px; padding: 12px 14px; font-size: .92rem; line-height: 1.6; margin-bottom: 10px; }
+
+.item { display: flex; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
+.item img { width: 56px; height: 56px; object-fit: cover; border-radius: 10px; }
+.item .info { flex: 1; min-width: 0; font-size: .92rem; }
+.item .info b { display: block; }
+.row { display: flex; justify-content: space-between; padding: 8px 0; }
+.total { font-size: 1.2rem; font-weight: 700; border-top: 2px solid #222; margin-top: 8px; padding-top: 12px; }
+.note-view { background: #f7c8d3; border-radius: 10px; padding: 10px 12px; margin: 12px 0; font-size: .9rem; }
+
+.btn { width: 100%; padding: 14px; border: 0; border-radius: 10px; background: #A8B58A; color: #fff; font: inherit; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 8px; }
+.btn:hover { filter: brightness(.95); }
+.btn:disabled { opacity: .6; cursor: wait; }
+.center { text-align: center; padding: 60px 20px; }
+.center a { color: #2f5bea; }
+@media (max-width: 760px) { .wrap { grid-template-columns: 1fr; } }

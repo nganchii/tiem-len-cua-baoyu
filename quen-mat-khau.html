@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quên mật khẩu | Tiệm len của Baoyuu</title>
+  <link
+    rel="stylesheet"
+    href="quen-mk.css">
+</head>
+
+<body>
+    <div class="card">
+        <h1>Quên mật khẩu</h1>
+
+    <!-- Bước 1: nhập email -->
+        <form id="formEmail" novalidate>
+            <p class="sub">Nhập email đã đăng ký, tiệm sẽ gửi mã xác nhận 6 số về email đó.</p>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" type="email" autocomplete="email" placeholder="baoyuu@example.com">
+            </div>
+            <button class="btn" type="submit" id="btnSend">Gửi mã xác nhận</button>
+            <div class="msg" id="msg1" role="status"></div>
+        </form>
+
+    <!-- Bước 2: nhập mã + mật khẩu mới -->
+        <form id="formReset" novalidate hidden>
+            <p class="sub" id="sentInfo"></p>
+            <div class="field">
+                <label for="code">Mã xác nhận</label>
+                <input id="code" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="6 chữ số">
+            </div>
+
+            <div class="field">
+                <label for="pw">Mật khẩu mới</label>
+                <input id="pw" type="password" autocomplete="new-password" placeholder="Ít nhất 8 ký tự">
+            </div>
+
+            <div class="field">
+                <label for="pw2">Nhập lại mật khẩu mới</label>
+                <input id="pw2" type="password" autocomplete="new-password">
+            </div>
+            <button class="btn" type="submit">Đổi mật khẩu</button>
+            <div class="msg" id="msg2" role="status"></div>
+        </form>
+
+        <a class="back" href="dang-nhap.html">← Quay lại đăng nhập</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+    <script src="quen-mk.js"></script>
+</body>
+</html>

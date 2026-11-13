@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tài khoản của tôi | Tiệm len của Baoyuu</title>
+  <link
+    rel="stylesheet"
+    href="tai-khoan.css">
+</head>
+<body>
+  <div class="top">
+    <a href="index.html">← Về cửa hàng</a>
+    <a href="index.html#shop">Tiệm len của Baoyuu</a>
+  </div>
+
+  <div class="wrap">
+    <aside class="box side">
+      <div class="avatar" id="avatar"></div>
+      <h3 id="sideName"></h3>
+      <small id="sideEmail"></small><br>
+      <label class="upload">Đổi ảnh đại diện<input type="file" id="avatarFile" accept="image/*"></label>
+      <div class="tabs">
+        <button type="button" class="tab active" data-tab="info">Thông tin cá nhân</button>
+        <button type="button" class="tab" data-tab="orders">Đơn hàng của tôi</button>
+      </div>
+      <button type="button" class="logout" id="logoutBtn">Đăng xuất</button>
+    </aside>
+
+    <main class="box">
+      <section id="tab-info">
+        <h1>Thông tin cá nhân</h1>
+        <form id="profileForm" novalidate>
+          <div class="grid">
+            <div class="field"><label for="name">Họ và tên</label><input id="name" type="text" autocomplete="name"><div class="error" id="err-name"></div></div>
+            <div class="field"><label for="email">Email</label><input id="email" type="email" readonly></div>
+            <div class="field"><label for="phone">Số điện thoại</label><input id="phone" type="tel" autocomplete="tel" placeholder="0912345678"><div class="error" id="err-phone"></div></div>
+            <div class="field"><label for="birthday">Ngày sinh</label><input id="birthday" type="date"></div>
+            <div class="field"><label for="gender">Giới tính</label>
+              <select id="gender"><option value="">Chưa chọn</option><option value="nu">Nữ</option><option value="nam">Nam</option><option value="khac">Khác</option></select>
+            </div>
+            <div class="field full"><label for="address">Địa chỉ nhận hàng</label><textarea id="address" rows="3" placeholder="Số nhà, đường, phường/xã, tỉnh/thành phố"></textarea></div>
+          </div>
+          <button type="submit" class="save">Lưu thông tin</button><span id="msg"></span>
+        </form>
+      </section>
+
+      <section id="tab-orders" hidden>
+        <h1>Đơn hàng của tôi</h1>
+        <div id="orderList"></div>
+      </section>
+    </main>
+  </div>
+  <script src="tai-khoan.js"></script>
+</body>
+</html>

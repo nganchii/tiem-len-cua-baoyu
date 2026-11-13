@@ -1,0 +1,163 @@
+const app = document.getElementById('app');
+const money = (n) => n.toLocaleString('vi-VN') + 'đ';
+
+function read(key, fallback) {
+    try { return JSON.parse(localStorage.getItem(key) || fallback); }
+    catch (e) { return JSON.parse(fallback); }
+}
+const cart = read('cart', '[]');
+const note = (localStorage.getItem('cartNote') || '').trim();
+const userName = localStorage.getItem('userName') || sessionStorage.getItem('userName') || '';
+
+// tạo thẻ an toàn, chữ của khách không làm vỡ trang
+const el = (tag, cls, text) => {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+};
+
+if (cart.length === 0) {
+    app.innerHTML = '<div class="center"><h2>Giỏ hàng đang trống</h2><p><a href="index.html">Quay lại chọn sản phẩm</a></p></div>';
+} else {
+    build();
+}
+
+function build() {
+    const wrap = el('div', 'wrap');
+
+    // ===== CỘT TRÁI: thông tin nhận hàng =====
+    const left = el('div', 'box');
+    left.appendChild(el('h1', '', 'Thanh toán'));
+    left.appendChild(el('h2', '', 'Thông tin nhận hàng'));
+
+    const form = document.createElement('form');
+    form.noValidate = true;
+    const uEmail = localStorage.getItem('userEmail') || sessionStorage.getItem('userEmail') || '';
+    const prof = (read('profiles', '{}'))[uEmail] || {};
+
+    function field(id, label, type, placeholder, value) {
+    const d = el('div', 'field');
+    const l = el('label', '', label); l.htmlFor = id;
+    const i = document.createElement('input');
+    i.id = id; i.type = type; i.placeholder = placeholder || ''; i.value = value || '';
+    const er = el('div', 'error'); er.id = 'err-' + id;
+    d.append(l, i, er);
+    form.appendChild(d);
+    }
+
+    field('fname', 'Họ và tên', 'text', 'Nguyễn Văn An', prof.name || userName);
+    field('fphone', 'Số điện thoại', 'tel', prof.phone || '');
+
+    const addrDiv = el('div', 'field');
+    const addrL = el('label', '', 'Địa chỉ nhận hàng'); addrL.htmlFor = 'faddr';
+    const addr = document.createElement('textarea');
+    addr.id = 'faddr'; addr.rows = 3; addr.placeholder = 'Số nhà, đường, phường/xã, tỉnh/thành phố';
+    addr.value = prof.address || '';
+    const addrErr = el('div', 'error'); addrErr.id = 'err-faddr';
+    addrDiv.append(addrL, addr, addrErr);
+    form.appendChild(addrDiv);
+
+    form.appendChild(el('h2', '', 'Phương thức thanh toán'));
+
+    const cod = el('label', 'pay');
+    cod.innerHTML = '<input type="radio" name="pay" value="cod" checked><span><b>Thanh toán khi nhận hàng (COD)</b><small>Trả tiền mặt cho người giao hàng.</small></span>';
+    const bank = el('label', 'pay');
+    bank.innerHTML = '<input type="radio" name="pay" value="bank"><span><b>Chuyển khoản ngân hàng</b><small>Chuyển khoản trước, tiệm xác nhận rồi gửi hàng.</small></span>';
+    const bankInfo = el('div'); bankInfo.id = 'bankInfo';
+    // >>> SỬA THÔNG TIN NGÂN HÀNG CỦA BẠN Ở ĐÂY <<<
+    bankInfo.innerHTML = 'Ngân hàng: <b>TÊN NGÂN HÀNG</b><br>Số tài khoản: <b>0000000000</b><br>Chủ tài khoản: <b>TÊN CHỦ TÀI KHOẢN</b><br>Nội dung chuyển khoản: <b>Tên + SĐT của bạn</b>';
+    form.append(cod, bank, bankInfo);
+
+    form.addEventListener('change', () => {
+    bankInfo.style.display = form.querySelector('input[name=pay]:checked').value === 'bank' ? 'block' : 'none';
+    });
+
+    const submit = el('button', 'btn', 'Đặt hàng');
+    submit.type = 'submit';
+    form.appendChild(submit);
+    left.appendChild(form);
+
+    // ===== CỘT PHẢI: tóm tắt đơn =====
+    const right = el('div', 'box');
+    right.appendChild(el('h2', '', 'Đơn hàng của bạn'));
+
+    let total = 0;
+    cart.forEach((it) => {
+    const sub = it.price * it.quantity;
+    total += sub;
+    const row = el('div', 'item');
+    const img = document.createElement('img'); img.src = it.img; img.alt = it.name;
+    const info = el('div', 'info');
+    info.append(el('b', '', it.name), el('span', '', money(it.price) + ' × ' + it.quantity));
+    row.append(img, info, el('b', '', money(sub)));
+    right.appendChild(row);
+    });
+
+    if (note) {
+    const nv = el('div', 'note-view');
+    nv.append(el('b', '', 'Ghi chú: '), document.createTextNode(note));
+    right.appendChild(nv);
+    }
+
+    const r1 = el('div', 'row'); r1.append(el('span', '', 'Tạm tính'), el('span', '', money(total)));
+    const r2 = el('div', 'row'); r2.append(el('span', '', 'Phí vận chuyển'), el('span', '', 'Tiệm báo sau'));
+    const r3 = el('div', 'row total'); r3.append(el('span', '', 'Tổng cộng'), el('span', '', money(total)));
+    right.append(r1, r2, r3);
+
+    wrap.append(left, right);
+    app.appendChild(wrap);
+
+    // ===== KIỂM TRA + ĐẶT HÀNG =====
+    form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    const address = addr.value.trim();
+    let ok = true;
+
+    const check = (id, cond, msg) => {
+        document.getElementById('err-' + id).textContent = cond ? '' : msg;
+        document.getElementById(id).classList.toggle('invalid', !cond);
+        if (!cond) ok = false;
+    };
+    check('fname', name.length >= 2, 'Nhập họ và tên.');
+    check('fphone', /^(0|\+84)\d{9}$/.test(phone), 'Số điện thoại chưa hợp lệ.');
+    check('faddr', address.length >= 8, 'Nhập địa chỉ nhận hàng đầy đủ.');
+    if (!ok) return;
+
+    const order = {
+        code: 'DH' + Date.now().toString().slice(-8),
+        email: uEmail,
+        createdAt: new Date().toISOString(),
+        customer: { name, phone, address },
+        payment: form.querySelector('input[name=pay]:checked').value,
+        note,
+        items: cart,
+        total
+    };
+
+    // >>> Chỗ này sau này sẽ gửi order lên server (xem lưu ý bên dưới) <<<
+    const orders = read('orders', '[]');
+    orders.push(order);
+    try {
+        localStorage.setItem('orders', JSON.stringify(orders));
+        localStorage.removeItem('cart');
+        localStorage.removeItem('cartNote');
+    } catch (err) {}
+
+    app.innerHTML = '';
+    const done = el('div', 'center');
+    done.append(
+        el('h1', '', 'Đặt hàng thành công'),
+        el('p', '', 'Mã đơn của bạn: ' + order.code),
+        el('p', '', order.payment === 'bank'
+        ? 'Bạn hãy chuyển khoản theo hướng dẫn, tiệm sẽ xác nhận và liên hệ qua số ' + phone + '.'
+        : 'Tiệm sẽ liên hệ qua số ' + phone + ' để xác nhận đơn và phí vận chuyển.')
+    );
+    const back = el('p'); 
+    const a = el('a', '', 'Tiếp tục mua sắm'); a.href = 'index.html';
+    back.appendChild(a); done.appendChild(back);
+    app.appendChild(done);
+    });
+}

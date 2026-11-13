@@ -1,0 +1,27 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #f6f6f8; color: #222; line-height: 1.7; }
+
+.top { background: #f7c8d3; padding: 16px 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.top a { color: #222; text-decoration: none; font-weight: 700; }
+
+.page { max-width: 1000px; margin: 28px auto; padding: 0 20px 40px; }
+.doc { background: #fff; border-radius: 16px; padding: 40px 44px; }
+
+.switch { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+.switch a { padding: 10px 18px; border-radius: 999px; background: #f3f3f5; color: #222; text-decoration: none; font-weight: 700; font-size: .92rem; }
+.switch a.active { background: #A8B58A; color: #fff; }
+
+h1 { margin: 0 0 6px; font-size: 1.9rem; }
+.updated { color: #666; font-size: .9rem; margin: 0 0 24px; }
+h2 { margin: 32px 0 8px; font-size: 1.15rem; color: #5d6f3c; }
+p { margin: 8px 0; }
+ul { margin: 8px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+.contact { background: #f7c8d3; border-radius: 12px; padding: 16px 20px; margin-top: 28px; }
+.contact p { margin: 4px 0; }
+
+@media (max-width: 640px) {
+    .doc { padding: 26px 20px; }
+    h1 { font-size: 1.5rem; }
+}
